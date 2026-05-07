@@ -1,0 +1,713 @@
+/* =============================================================
+   style.css — Personal Website Styles
+   =============================================================
+   HOW THIS FILE IS ORGANISED (use Ctrl+F to jump to a section):
+     1. CSS Variables (colours, fonts, spacing)
+     2. Reset & Base Styles
+     3. Reusable Utility Classes
+     4. Navigation Bar
+     5. Hero / Home Section
+     6. About Section
+     7. Projects Section
+     8. Contact Section
+     9. Footer
+    10. Animations
+    11. Responsive (Mobile) Styles
+   ============================================================= */
+
+
+/* =============================================================
+   1. CSS VARIABLES
+   Change these values to instantly re-theme the whole site!
+   ============================================================= */
+:root {
+  /* --- Colours --- */
+  --clr-bg:          #faf8f5;   /* warm off-white page background  */
+  --clr-bg-alt:      #f2ede6;   /* slightly darker background for alternate sections */
+  --clr-surface:     #ffffff;   /* card / form backgrounds         */
+  --clr-border:      #e8e2d9;   /* subtle borders                  */
+
+  --clr-text:        #1c1a18;   /* primary text colour (near-black) */
+  --clr-text-muted:  #6b6560;   /* secondary / subdued text        */
+
+  --clr-accent:      #c0533a;   /* main accent — warm terracotta   */
+  --clr-accent-dark: #a03f2a;   /* darker accent for hover states  */
+  --clr-accent-pale: #f5e9e5;   /* very light accent for tags etc. */
+
+  /* --- Typography --- */
+  --font-display: 'Playfair Display', Georgia, serif;   /* headings   */
+  --font-body:    'DM Sans', system-ui, sans-serif;     /* body text  */
+
+  /* --- Spacing scale (use multiples of 8px) --- */
+  --space-xs:  0.5rem;    /*  8px */
+  --space-sm:  1rem;      /* 16px */
+  --space-md:  1.5rem;    /* 24px */
+  --space-lg:  3rem;      /* 48px */
+  --space-xl:  6rem;      /* 96px */
+
+  /* --- Shape --- */
+  --radius-sm:  0.5rem;
+  --radius-md:  1rem;
+  --radius-lg:  1.5rem;
+  --radius-pill: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+
+  /* --- Transitions --- */
+  --transition: 0.25s ease;
+}
+
+
+/* =============================================================
+   2. RESET & BASE STYLES
+   ============================================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;        /* enables smooth scrolling for nav links */
+  scroll-padding-top: 4.5rem;     /* offset so nav doesn't cover section headings */
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.7;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+
+a {
+  color: var(--clr-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--clr-accent-dark); }
+
+ul { list-style: none; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+
+/* =============================================================
+   3. REUSABLE UTILITY CLASSES
+   ============================================================= */
+
+/* --- Container: centres content and adds side padding --- */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;          /* centres horizontally */
+  padding-inline: var(--space-md);
+}
+
+/* --- Section: large vertical padding on every section --- */
+.section {
+  padding-block: var(--space-xl);
+}
+
+/* Alternate section background (used on Projects) */
+.section-alt {
+  background-color: var(--clr-bg-alt);
+}
+
+/* --- Section label: small uppercase text above each heading --- */
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: var(--space-xs);
+}
+
+/* --- Section title: the main h2 on each section --- */
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);   /* clamp = responsive font size */
+  color: var(--clr-text);
+  margin-bottom: var(--space-lg);
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+              background-color var(--transition), color var(--transition);
+  border: 2px solid transparent;
+}
+
+/* Primary (filled) button */
+.btn-primary {
+  background-color: var(--clr-accent);
+  color: #fff;
+  border-color: var(--clr-accent);
+}
+.btn-primary:hover {
+  background-color: var(--clr-accent-dark);
+  border-color: var(--clr-accent-dark);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Outline button */
+.btn-outline {
+  background-color: transparent;
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
+}
+.btn-outline:hover {
+  background-color: var(--clr-accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Card button (smaller, used inside project cards) */
+.btn-card {
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--clr-accent);
+  border: 1.5px solid var(--clr-accent);
+  margin-top: auto;             /* pushes button to bottom of the card */
+  align-self: flex-start;
+}
+.btn-card:hover {
+  background-color: var(--clr-accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Full-width button (used in the contact form) */
+.btn-full { width: 100%; text-align: center; }
+
+
+/* =============================================================
+   4. NAVIGATION BAR
+   ============================================================= */
+#navbar {
+  position: fixed;              /* stays at the top while scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(10px);  /* frosted-glass effect */
+  border-bottom: 1px solid var(--clr-border);
+  transition: box-shadow var(--transition);
+}
+
+/* Class added by JavaScript when user scrolls down */
+#navbar.scrolled {
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: 1rem var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo / initials in the nav */
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  letter-spacing: 0.02em;
+}
+.nav-logo:hover { color: var(--clr-accent); }
+
+/* Navigation links list */
+.nav-links {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+/* Animated underline on nav links */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--clr-accent);
+  transition: width var(--transition);
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--clr-text);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Hamburger menu button (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--clr-text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+/* Animate hamburger → X when menu is open */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* =============================================================
+   5. HERO / HOME SECTION
+   ============================================================= */
+.hero {
+  min-height: 100dvh;           /* full viewport height */
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-inline: var(--space-md);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin-inline: auto;          /* centres on smaller screens too */
+  padding-top: 5rem;            /* offset for fixed nav */
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Small label above the name */
+.hero-eyebrow {
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+  margin-bottom: 0.25rem;
+  font-weight: 300;
+}
+
+/* The big name */
+.hero-name {
+  font-size: clamp(3rem, 9vw, 6rem);
+  line-height: 1.05;
+  color: var(--clr-text);
+  margin-bottom: var(--space-sm);
+}
+
+/* Italic accent in the name — optional, applied via CSS */
+.hero-name em { font-style: italic; color: var(--clr-accent); }
+
+/* The short tagline */
+.hero-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--clr-text-muted);
+  max-width: 520px;
+  margin-bottom: var(--space-md);
+  font-weight: 300;
+}
+
+/* Button row */
+.hero-buttons {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* Decorative blurred circle in the background */
+.hero-decoration {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 55vmin;
+  height: 55vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--clr-accent-pale), transparent 70%);
+  pointer-events: none;
+  animation: floatBlob 8s ease-in-out infinite alternate;
+}
+
+
+/* =============================================================
+   6. ABOUT SECTION
+   ============================================================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--clr-text-muted);
+  margin-bottom: var(--space-sm);
+  font-size: 1.05rem;
+}
+.about-text strong {
+  color: var(--clr-text);
+  font-weight: 500;
+}
+
+/* Card containing the interest/skill tags */
+.interest-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  box-shadow: var(--shadow-sm);
+}
+.interest-card h3 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+/* Tag pills */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tag {
+  background-color: var(--clr-accent-pale);
+  color: var(--clr-accent-dark);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Goal quote card */
+.goal-card {
+  background: var(--clr-accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  color: #fff;
+}
+.goal-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+  margin-bottom: 0.5rem;
+}
+.goal-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+
+/* =============================================================
+   7. PROJECTS SECTION
+   ============================================================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+/* Individual project card */
+.project-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Top row of each card: icon + tag */
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.card-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  background: var(--clr-accent-pale);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: var(--clr-text);
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--clr-text-muted);
+  flex-grow: 1;               /* makes all cards the same height in a row */
+}
+
+
+/* =============================================================
+   8. CONTACT SECTION
+   ============================================================= */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.contact-intro {
+  font-size: 1.05rem;
+  color: var(--clr-text-muted);
+  margin-bottom: var(--space-md);
+  max-width: 340px;
+}
+
+/* List of email + social links */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+.contact-icon {
+  font-size: 1.1rem;
+  width: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+.contact-list a {
+  color: var(--clr-text-muted);
+  font-weight: 400;
+}
+.contact-list a:hover { color: var(--clr-accent); }
+
+/* The contact form card */
+.contact-form-wrap {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Each label + input pair */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--clr-text);
+}
+
+/* Shared styles for all input/textarea fields */
+.form-group input,
+.form-group textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: var(--clr-bg);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  color: var(--clr-text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  resize: vertical;             /* textarea can be resized vertically only */
+  width: 100%;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px rgba(192, 83, 58, 0.12);
+}
+
+/* Placeholder text colour */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #b0a9a1;
+}
+
+/* Success message (hidden by default, shown after submit) */
+.form-success {
+  display: none;
+  font-size: 0.9rem;
+  color: #2a7d4f;
+  background: #e6f5ed;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.form-success.visible { display: block; }
+
+
+/* =============================================================
+   9. FOOTER
+   ============================================================= */
+.footer {
+  background-color: var(--clr-text);
+  color: rgba(255,255,255,0.55);
+  text-align: center;
+  padding: var(--space-md);
+  font-size: 0.85rem;
+}
+
+
+/* =============================================================
+   10. ANIMATIONS
+   ============================================================= */
+
+/* Fade in and slide up — used on hero content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gentle floating blob animation for hero decoration */
+@keyframes floatBlob {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-4%, 4%) scale(1.05); }
+}
+
+/* Class added by JavaScript to animate elements as they scroll into view */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =============================================================
+   11. RESPONSIVE — MOBILE STYLES
+   Styles in this block ONLY apply when screen width < 768px
+   ============================================================= */
+@media (max-width: 768px) {
+
+  /* Show the hamburger button */
+  .hamburger { display: flex; }
+
+  /* Hide the nav links list by default on mobile */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;              /* sit right below the nav bar */
+    left: 0;
+    width: 100%;
+    background-color: var(--clr-bg);
+    border-bottom: 1px solid var(--clr-border);
+    padding: var(--space-sm) 0;
+  }
+  /* Show the list when JavaScript adds the "open" class */
+  .nav-links.open { display: flex; }
+
+  .nav-link {
+    display: block;
+    padding: 0.75rem var(--space-md);
+    font-size: 1rem;
+  }
+  .nav-link::after { display: none; }   /* remove underline animation on mobile */
+
+  /* Stack the About grid vertically on mobile */
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stack the Contact grid vertically on mobile */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reduce section vertical padding on small screens */
+  .section { padding-block: var(--space-lg); }
+
+  /* Ensure project cards fill width on small screens */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
