@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parker Dao</title>
+
+    <!-- Google Fonts: Fraunces (display) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="#home" class="nav-logo">PD</a>
+
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home"       class="nav-link">Home</a></li>
+          <li><a href="#about"      class="nav-link">About</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#background"  class="nav-link">Background</a></li>
+          <li><a href="#contact"    class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <!-- ===================== HOME / HERO ===================== -->
+    <section id="home" class="section hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Hello, I'm</p>
+        <h1 class="hero-name">Parker Dao</h1>
+
+        <p class="hero-tagline">
+          Lifeguard, sales associate, and volunteer based in Spokane Valley, Washington.
+        </p>
+
+        <div class="hero-buttons" id="hero-buttons">
+          <a href="#experience" class="btn btn-primary">My Experience</a>
+          <a href="#contact"    class="btn btn-outline">Get In Touch</a>
+        </div>
+      </div>
+
+      <div class="hero-decoration" id="hero-decoration" aria-hidden="true"></div>
+    </section>
+
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section">
+      <div class="container">
+        <span class="section-label">Who I Am</span>
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I'm a student at <strong>Spokane Falls Community College</strong>,
+              going through Running Start while juggling a couple of jobs. I work
+              as a lifeguard at the YMCA and a sales associate at Zumiez, and I
+              spend a good chunk of my free time volunteering around Spokane.
+            </p>
+            <p>
+              I like work that keeps me around people and outside. Whether that's
+              watching a pool, helping coordinate community projects, or supporting
+              conservation efforts with the Spokane Riverkeeper, I try to show up
+              and be useful.
+            </p>
+          </div>
+
+          <div class="about-sidebar">
+            <div class="interest-card">
+              <h3>Skills</h3>
+              <div class="tags">
+                <span class="tag">Collaboration</span>
+                <span class="tag">Technology Literacy</span>
+                <span class="tag">Social Skills</span>
+                <span class="tag">Leadership &amp; Organization</span>
+              </div>
+            </div>
+
+            <div class="goal-card">
+              <p class="goal-label">What I'm About</p>
+              <p class="goal-text">
+                "Show up, stay useful, and build real relationships with the people
+                and community around me."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience" class="section section-alt">
+      <div class="container">
+        <span class="section-label">Where I've Worked</span>
+        <h2 class="section-title">Experience</h2>
+
+        <div class="projects-grid">
+
+          <!-- YMCA -->
+          <article class="project-card">
+            <div class="card-top">
+              <span class="card-icon">🛟</span>
+              <span class="card-tag">May 2025 &ndash; Present</span>
+            </div>
+            <h3 class="card-title">Lifeguard</h3>
+            <p class="card-company">YMCA, Spokane Valley, WA</p>
+            <ul class="card-list">
+              <li>Monitored pool activity to keep patrons safe and responded fast to emergencies using First Aid and CPR.</li>
+              <li>Enforced facility rules while keeping a positive, welcoming environment for guests.</li>
+              <li>Ran routine safety checks, kept things clean, and supported swim programs as needed.</li>
+            </ul>
+          </article>
+
+          <!-- Helping Captives & Spokane Riverkeeper -->
+          <article class="project-card">
+            <div class="card-top">
+              <span class="card-icon">🌿</span>
+              <span class="card-tag">February 2025</span>
+            </div>
+            <h3 class="card-title">Volunteer Coordinator</h3>
+            <p class="card-company">Helping Captives &amp; Spokane Riverkeeper, Spokane Valley, WA</p>
+            <ul class="card-list">
+              <li>Organized and led volunteer opportunities for community members.</li>
+              <li>Helped renovate the interior of a new shelter for rescued victims of human trafficking.</li>
+              <li>Supported conservation efforts through Spokane Riverkeeper initiatives.</li>
+            </ul>
+          </article>
+
+          <!-- Zumiez -->
+          <article class="project-card">
+            <div class="card-top">
+              <span class="card-icon">🛹</span>
+              <span class="card-tag">Sep 2025 &ndash; Present</span>
+            </div>
+            <h3 class="card-title">Sales Associate</h3>
+            <p class="card-company">Zumiez, Spokane Valley, WA</p>
+            <ul class="card-list">
+              <li>Drove sales by recommending complementary products and staying on top of current streetwear and skate trends.</li>
+              <li>Ran the POS system, handled cash and card transactions accurately, and kept visual merchandising organized.</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== BACKGROUND ===================== -->
+    <section id="background" class="section">
+      <div class="container">
+        <span class="section-label">The Rest Of It</span>
+        <h2 class="section-title">Background</h2>
+
+        <div class="background-grid">
+
+          <div class="bg-card">
+            <h3 class="bg-heading">Education</h3>
+            <div class="bg-item">
+              <p class="bg-title">Spokane Falls Community College</p>
+              <p class="bg-sub">Spokane, WA &middot; Junior (Running Start)</p>
+              <p class="bg-date">September 2025 &ndash; Present</p>
+            </div>
+          </div>
+
+          <div class="bg-card">
+            <h3 class="bg-heading">Awards</h3>
+            <div class="bg-item">
+              <p class="bg-title">PACE Character Trait Award for Diligence</p>
+              <p class="bg-sub">Awarded by Sasha Deyarmin</p>
+            </div>
+            <div class="bg-item">
+              <p class="bg-title">Student Leadership Nomination</p>
+              <p class="bg-sub">Recommended by John Traxler</p>
+            </div>
+          </div>
+
+          <div class="bg-card">
+            <h3 class="bg-heading">Certifications</h3>
+            <div class="bg-item">
+              <p class="bg-title">CPR / First Aid / Deep Water Lifeguard</p>
+            </div>
+            <div class="bg-item">
+              <p class="bg-title">Oregon Food Handler's Permit</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact-container">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">Contact</h2>
+
+        <div class="contact-grid">
+
+          <div class="contact-info">
+            <p class="contact-intro">
+              Want to reach out about work, volunteering, or anything else?
+              Here's how to find me.
+            </p>
+
+            <ul class="contact-list">
+              <li>
+                <span class="contact-icon">✉️</span>
+                <a href="mailto:parklacdao@gmail.com">parklacdao@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-icon">📱</span>
+                <a href="tel:+15094253078">(509) 425-3078</a>
+              </li>
+              <li>
+                <span class="contact-icon">📍</span>
+                <span>3117 S. Ponderosa Ln., Spokane Valley, WA 99206</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contact-form-wrap">
+            <!--
+              NOTE: This form doesn't send email on its own.
+              To make it work, connect it to a free service like
+              Formspree (formspree.io) and add your endpoint to the form's action.
+            -->
+            <form class="contact-form" id="contact-form">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Hi Parker, I'd love to talk about..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+
+              <p class="form-success" id="form-success">
+                ✅ Thanks! I'll get back to you soon.
+              </p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <p>© 2026 Parker Dao. Built in Spokane Valley.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
